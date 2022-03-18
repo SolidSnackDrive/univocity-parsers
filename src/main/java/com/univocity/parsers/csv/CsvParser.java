@@ -191,12 +191,12 @@ public final class CsvParser extends AbstractParser<CsvParserSettings> {
 					} else {
 						if (len != -1) {
 							output.trim = ignoreTrailingWhitespace;
-							ch = output.appender.appendUntil(ch, input, delimiter, newLine);
+							ch = output.appender.appendUntil(ch, input, ""+delimiter+newLine);
 						} else {
 							if (input.skipString(ch, delimiter)) {
 								ch = input.getChar();
 							} else {
-								ch = output.appender.appendUntil(ch, input, delimiter, newLine);
+								ch = output.appender.appendUntil(ch, input, ""+delimiter+newLine);
 							}
 						}
 						output.valueParsed();
@@ -220,7 +220,7 @@ public final class CsvParser extends AbstractParser<CsvParserSettings> {
 		output.appender.reset();
 		output.appender = NoopCharAppender.getInstance();
 		if (multiDelimiter == null) {
-			ch = NoopCharAppender.getInstance().appendUntil(ch, input, delimiter, newLine);
+			ch = NoopCharAppender.getInstance().appendUntil(ch, input, ""+delimiter+newLine);
 		} else {
 			for (; match < multiDelimiter.length && ch != newLine; ch = input.nextChar()) {
 				if (multiDelimiter[match] == ch) {
@@ -372,7 +372,7 @@ public final class CsvParser extends AbstractParser<CsvParserSettings> {
 			}
 			ch = input.nextChar();
 			output.trim = ignoreTrailingWhitespace;
-			ch = output.appender.appendUntil(ch, input, delimiter, newLine);
+			ch = output.appender.appendUntil(ch, input, ""+delimiter+newLine);
 		} else {
 			if (keepQuotes && prev == '\0') {
 				output.appender.append(quote);
@@ -403,7 +403,7 @@ public final class CsvParser extends AbstractParser<CsvParserSettings> {
 					if (prev == quoteEscape && quoteEscape != '\0') {
 						output.appender.append(quoteEscape);
 					}
-					ch = output.appender.appendUntil(ch, input, quote, quoteEscape, escapeEscape);
+					ch = output.appender.appendUntil(ch, input, ""+quote+quoteEscape+escapeEscape);
 					prev = ch;
 					ch = input.nextChar();
 				} else {
@@ -727,7 +727,7 @@ public final class CsvParser extends AbstractParser<CsvParserSettings> {
 					if (prev == quoteEscape && quoteEscape != '\0') {
 						output.appender.append(quoteEscape);
 					}
-					ch = output.appender.appendUntil(ch, input, quote, quoteEscape, escapeEscape);
+					ch = output.appender.appendUntil(ch, input, ""+quote+quoteEscape+escapeEscape);
 					prev = ch;
 					ch = input.nextChar();
 				} else {

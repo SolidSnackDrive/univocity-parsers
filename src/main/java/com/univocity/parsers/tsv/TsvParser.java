@@ -104,7 +104,7 @@ public class TsvParser extends AbstractParser<TsvParserSettings> {
 					}
 					ch = input.nextChar();
 				} else {
-					ch = output.appender.appendUntil(ch, input, '\t', escapeChar, newLine);
+					ch = output.appender.appendUntil(ch, input, ""+'\t'+escapeChar+newLine);
 				}
 			}
 

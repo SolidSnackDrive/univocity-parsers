@@ -211,29 +211,7 @@ public interface CharAppender extends CharSequence {
 	 * @param stop the stop character
 	 * @return the stop character found on the input.
 	 */
-	char appendUntil(char ch, CharInput input, char stop);
-
-	/**
-	 * Appends characters from the input, until a stop character is found
-	 * @param ch the first character of the input to be appended.
-	 * @param input the input whose the following characters will be appended
-	 * @param stop1 the first stop character
-	 * @param stop2 the second stop character
-	 * @return one of the stop characters found on the input.
-	 */
-	char appendUntil(char ch, CharInput input, char stop1, char stop2);
-
-	/**
-	 * Appends characters from the input, until a stop character is found
-	 * @param ch the first character of the input to be appended.
-	 * @param input the input whose the following characters will be appended
-	 * @param stop1 the first stop character
-	 * @param stop2 the second stop character
-	 * @param stop3 the third stop character
-	 * @return one of the stop characters found on the input.
-	 */
-	char appendUntil(char ch, CharInput input, char stop1, char stop2, char stop3);
-
+	char appendUntil(char ch, CharInput input, String stop);
 
 	/**
 	 * Appends characters from an input array

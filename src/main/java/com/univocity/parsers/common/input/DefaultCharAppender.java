@@ -281,22 +281,8 @@ public class DefaultCharAppender implements CharAppender {
 			;
 	}
 
-	public char appendUntil(char ch, CharInput input, char stop) {
-		for (; ch != stop; ch = input.nextChar()) {
-			chars[index++] = ch;
-		}
-		return ch;
-	}
-
-	public char appendUntil(char ch, CharInput input, char stop1, char stop2) {
-		for (; ch != stop1 && ch != stop2; ch = input.nextChar()) {
-			chars[index++] = ch;
-		}
-		return ch;
-	}
-
-	public char appendUntil(char ch, CharInput input, char stop1, char stop2, char stop3) {
-		for (; ch != stop1 && ch != stop2 && ch != stop3; ch = input.nextChar()) {
+	public char appendUntil(char ch, CharInput input, String stop) {
+		for (; stop.indexOf(ch) == -1 ; ch = input.nextChar()) {
 			chars[index++] = ch;
 		}
 		return ch;
