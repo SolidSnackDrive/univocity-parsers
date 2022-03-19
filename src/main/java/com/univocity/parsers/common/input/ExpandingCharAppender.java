@@ -162,31 +162,12 @@ public class ExpandingCharAppender extends DefaultCharAppender {
 		}
 	}
 
-	public final char appendUntil(char ch, CharInput input, char stop) {
+	public final char appendUntil(char ch, CharInput input, String stop) {
 		try {
 			return super.appendUntil(ch, input, stop);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			expandAndRetry();
 			return this.appendUntil(input.getChar(), input, stop);
-		}
-	}
-
-
-	public final char appendUntil(char ch, CharInput input, char stop1, char stop2) {
-		try {
-			return super.appendUntil(ch, input, stop1, stop2);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			expandAndRetry();
-			return this.appendUntil(input.getChar(), input, stop1, stop2);
-		}
-	}
-
-	public final char appendUntil(char ch, CharInput input, char stop1, char stop2, char stop3) {
-		try {
-			return super.appendUntil(ch, input, stop1, stop2, stop3);
-		} catch (ArrayIndexOutOfBoundsException e) {
-			expandAndRetry();
-			return this.appendUntil(input.getChar(), input, stop1, stop2, stop3);
 		}
 	}
 

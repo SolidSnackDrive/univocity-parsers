@@ -341,7 +341,7 @@ public abstract class AbstractCharInputReader implements CharInputReader {
 				if (ch <= ' ' && whitespaceRangeStart < ch) {
 					ch = skipWhitespace(ch, normalizedLineSeparator, normalizedLineSeparator);
 				}
-				tmp.appendUntil(ch, this, normalizedLineSeparator, normalizedLineSeparator);
+				tmp.appendUntil(ch, this, ""+normalizedLineSeparator+normalizedLineSeparator);
 
 				if (lineCount < expectedLineCount) {
 					tmp.appendIgnoringWhitespace(nextChar());
