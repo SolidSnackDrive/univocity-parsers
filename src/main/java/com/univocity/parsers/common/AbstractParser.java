@@ -552,7 +552,13 @@ public abstract class AbstractParser<T extends CommonParserSettings<?>> {
 
 		String[] row;
 		while ((row = parseNext()) != null) {
-			out.add(row);
+			boolean canAdd = true;
+			if(settings.getSkipEmptyRecords()) {
+				canAdd = Arrays.asList(row).stream().allMatch(val -> val != null);
+			}
+			if(canAdd) {
+				out.add(row);
+			}
 		}
 		return out;
 	}
@@ -583,6 +589,7 @@ public abstract class AbstractParser<T extends CommonParserSettings<?>> {
 					parseRecord();
 				}
 				String[] row = output.rowParsed();
+
 				if (row != null) {
 					if (recordsToRead >= 0 && context.currentRecord() >= recordsToRead) {
 						context.stop();
@@ -1194,7 +1201,13 @@ public abstract class AbstractParser<T extends CommonParserSettings<?>> {
 		}
 		Record record;
 		while ((record = parseNextRecord()) != null) {
-			out.add(record);
+			boolean canAdd = true;
+			if(settings.getSkipEmptyRecords()) {
+				canAdd = Arrays.asList(record.getValues()).stream().allMatch(val -> val != null);
+			}
+			if(canAdd) {
+				out.add(record);
+			}
 		}
 		return out;
 	}
