@@ -29,28 +29,21 @@ import static org.testng.Assert.*;
 
 public class CsvParserTest extends ParserTestCase {
 
-	/*********SENG371 Tests start here ****/
 	@Test
-	public void skipEmptyRecordsTest() {
-		String csv = "HEADER1, HEADER2\n" +
-				"value1, value2\n" +
-				",\n" +
-				"value5, value6";
+	public void FilterOutRowsWithNoValues() {
+		String test = "v11, v12, v13\n" + ",,,\n" + "v31, v32, v33\n" + "v41, v42, v43"; //contains multiple rows with no values
 		CsvParserSettings csvSettings = new CsvParserSettings();
 		csvSettings.setSkipEmptyLines(true);
 		csvSettings.setSkipEmptyRecords(false);
 		csvSettings.setHeaderExtractionEnabled(true);
 		CsvParser parser = new CsvParser(csvSettings);
 
-		List<Record> result =  parser.parseAllRecords(new ByteArrayInputStream(csv.getBytes()));
-
-		assertEquals(result.size(), 3);
+		List<Record> result =  parser.parseAllRecords(new ByteArrayInputStream(test.getBytes()));
+		assertEquals(result.size(), 4);
 
 		csvSettings.setSkipEmptyRecords(true);
-
-		result = parser.parseAllRecords(new ByteArrayInputStream(csv.getBytes()) );
-
-		assertEquals(result.size(), 2);
+		result = parser.parseAllRecords(new ByteArrayInputStream(test.getBytes()) );
+		assertEquals(result.size(), 3);
 	}
 
 	@DataProvider(name = "testProvider")

@@ -153,6 +153,9 @@ public abstract class AbstractParser<T extends CommonParserSettings<?>> {
 					if (processor != NoopProcessor.instance) {
 						rowProcessed(row);
 					}
+				if(settings.gethasCondition()){
+					stopParsing();
+				}
 				}
 			}
 

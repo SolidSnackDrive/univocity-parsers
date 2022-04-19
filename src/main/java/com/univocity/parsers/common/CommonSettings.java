@@ -86,7 +86,23 @@ public abstract class CommonSettings<F extends Format> implements Cloneable {
 	public CommonSettings() {
 		setFormat(createDefaultFormat());
 	}
+	
+	
+	/**
+	 * Returns whether or not empty lines should be ignored (defaults to false)
+	 * <p>when reading, if condition is set (true), parser will stop, otherwise continue parsing
+	 * @return false if no condition exists, true otherwise.
+	 */
+	public boolean gethasCondition() {
+		return hasCondition;
+	}
 
+
+	public void sethasCondition(boolean hasCondition) {
+		this.hasCondition = hasCondition;
+	}
+	
+	
 	/**
 	 * Returns the String representation of a null value (defaults to null)
 	 * <p>When reading, if the parser does not read any character from the input, the nullValue is used instead of an empty string
