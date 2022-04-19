@@ -68,6 +68,7 @@ public abstract class CommonSettings<F extends Format> implements Cloneable {
 	private int maxCharsPerColumn = 4096;
 	private int maxColumns = 512;
 	private boolean skipEmptyLines = true;
+	private boolean skipEmptyRecords = false;
 	private boolean ignoreTrailingWhitespaces = true;
 	private boolean ignoreLeadingWhitespaces = true;
 	private FieldSelector fieldSelector = null;
@@ -142,6 +143,16 @@ public abstract class CommonSettings<F extends Format> implements Cloneable {
 	}
 
 	/**
+	 * Returns whether or not empty records should be ignored (defaults to false)
+	 * <p>when reading, if the parser reads a record that is contains only empty values, it will be skipped.
+	 *
+	 * @return true if empty records are configured to be ignored, false otherwise
+	 */
+	public boolean getSkipEmptyRecords() {
+		return skipEmptyRecords;
+	}
+
+	/**
 	 * Defines whether or not empty lines should be ignored (defaults to true)
 	 * <p>when reading, if the parser reads a line that is empty, it will be skipped.
 	 * <p>when writing, if the writer receives an empty or null row to write to the output, it will be ignored
@@ -150,6 +161,16 @@ public abstract class CommonSettings<F extends Format> implements Cloneable {
 	 */
 	public void setSkipEmptyLines(boolean skipEmptyLines) {
 		this.skipEmptyLines = skipEmptyLines;
+	}
+
+	/**
+	 * Defines whether or not empty records should be ignored (defaults to false)
+	 * <p>when reading, if the parser reads a record that is contains only empty values, it will be skipped.
+	 *
+	 * @return true if empty records are configured to be ignored, false otherwise
+	 */
+	public void setSkipEmptyRecords(boolean skipEmptyRecords) {
+		this.skipEmptyRecords = skipEmptyRecords;
 	}
 
 	/**
